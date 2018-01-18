@@ -32,17 +32,27 @@
         placeholder.appendChild(child);
         document.getElementById("timestamp").value=data.timestamp;
         document.getElementById("id").value=data.id;
+        document.getElementById("amount").value=data.amount;
+        document.getElementById("price").value=data.price;
+        document.getElementById("type").value=data.type;
         i++;
         document.getElementById("liveTrades").submit();
     });
 </script>
-<form id="liveTrades", method="post" action="liveTrade">
-  <input type="text" name="timestamp" id="timestamp">
-  <input type="text" name="id" id="id">
-  <div id="live_trades">
-
-  </div>
-
+<form id="liveTrades", method="post" action="liveTrade" target="liveTrades">
+  <input type="hidden" name="timestamp" id="timestamp">
+  <input type="hidden" name="id" id="id">
+  <input type="hidden" name="amount" id="amount">
+  <input type="hidden" name="price" id="price">
+  <input type="hidden" name="type" id="type">
+  <iframe name="liveTrades" hidden></iframe>
 </form>
+<script>
+  var form = document.getElementById("liveTrades");
+  function showDiv() {
+      alert("Form Submitted");
+  }
+  form.addEventListener("submit", showDiv)
+</script>
 </body>
 </html>

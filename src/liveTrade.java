@@ -17,16 +17,16 @@ public class liveTrade extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("hello");
-        System.out.println(req.getParameter("timestamp"));
-        System.out.println(req.getParameter("id"));
         try {
-            String query = "INSERT INTO BITSTAMP VALUES (?,?)";
+            String query = "INSERT INTO BITSTAMP VALUES (?,?,?,?,?)";
             Class.forName("oracle.jdbc.driver.OracleDriver");
             Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:bitstamp", "system", "Shevali123");
             PreparedStatement st = con.prepareStatement(query);
             st.setString(1, req.getParameter("timestamp"));
             st.setString(2, req.getParameter("id"));
+            st.setString(3, req.getParameter("amount"));
+            st.setString(4, req.getParameter("price"));
+            st.setString(5, req.getParameter("type"));
             st.execute();
 
         }
